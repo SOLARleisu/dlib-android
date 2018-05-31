@@ -14,7 +14,7 @@ else()
   message("OS not detected.")
 endif()
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Werror")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall ")
 
 ## Define each subfolders
 set(JNI_DETECTION_INCLUDE jni/jni_detections)
@@ -24,11 +24,13 @@ set(JNI_COMMON_SRC jni/jni_common)
 set(DLIB_DIR dlib)
 set(EXT_DIR third_party)
 set(GLOG_INCLUDE_DIR ${EXT_DIR}/miniglog)
-set(OPENCV_PREBUILT ${EXT_DIR}/OpenCV-android-sdk/sdk/native/jni)
+set(OPENCV_PREBUILT /home/sulei/workspace/opencv/platforms/build_android_arm/android_lib_lei/sdk/native/jni)
 
 # Opencv and it will use static import
 set(ANDROID_NDK_ABI_NAME ${CMAKE_ANDROID_ARCH_ABI})
-include(${OPENCV_PREBUILT}/OpenCVConfig.cmake)
+# include(${OPENCV_PREBUILT}/OpenCVConfig.cmake)
+set(OpenCV_DIR "/home/sulei/workspace/opencv/platforms/build_android_arm/android_lib_lei/sdk/native/jni")
+find_package(OpenCV REQUIRED)
 
 # Include headers
 include_directories(${DLIB_DIR} ${OpenCV_INCLUDE_DIRS} ${GLOG_INCLUDE_DIR} ${JNI_COMMON_INCLUDE} ${JNI_DETECTION_INCLUDE} include)
@@ -55,5 +57,7 @@ target_link_libraries(android_dlib
                       z
                       m
                       dl
-                      log)
+                      log
+                      ${OpenCV_LIBS})
+
 

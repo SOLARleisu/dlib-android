@@ -167,14 +167,16 @@ def test_cmake():
     os.chdir(buildFolder)
     cmake_cmd = ['cmake']
     build_cmd = ['make']
-    ABI = 'arm64-v8a'
+    ABI = DEVICE_ABI #'arm64-v8a'
     # ABI = 'x86'
     # TODO
-    NDK_PATH = '/home/darrenl/tools/android-ndk-r10e'
+    NDK_PATH = '/home/sulei/android-ndk-r12b/'
     cmake_cmd = cmake_cmd + ['-DCMAKE_SYSTEM_NAME=Android', '-DCMAKE_SYSTEM_VERSION=21',
                                 '-DCMAKE_ANDROID_ARCH_ABI=' + ABI, '-DCMAKE_ANDROID_STL_TYPE=gnustl_static',
-                                '-DCMAKE_ANDROID_NDK=' + NDK_PATH]
-    cmake_cmd = cmake_cmd + ['-D', 'CMAKE_INSTALL_PREFIX=.']
+                                '-DANDROID_NATIVE_API_LEVEL=21',
+                                '-DANDROID_NDK=' + NDK_PATH,
+                                '-DCMAKE_TOOLCHAIN_FILE=' + '/home/sulei/workspace/opencv/platforms/android/android.toolchain.cmake',]
+    cmake_cmd = cmake_cmd + ['-D', 'CMAKE_INSTALL_PREFIX=./install']
     cmake_cmd = cmake_cmd + ['..']
     # Print the build command
     print PrintColors.UNDERLINE + 'cmake build arguments:' + str(cmake_cmd) + PrintColors.ENDC
@@ -206,6 +208,7 @@ if __name__ == '__main__':
         ndk_clean()
     else:
         ndk_build(args)
+    #  test_cmake()
 
     if args.android_project and os.path.exists(args.android_project):
         srcFolder = os.path.join('libs')
