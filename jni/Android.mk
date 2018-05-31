@@ -21,7 +21,7 @@ $(info TOP Level Path: $(TOP_LEVEL_PATH))
 
 EXT_INSTALL_PATH = $(TOP_LEVEL_PATH)/third_party
 
-OPENCV_PATH = $(EXT_INSTALL_PATH)/opencv/jni
+OPENCV_PATH = /home/sulei/workspace/opencv/platforms/build_android_arm/android_lib_lei/sdk/native/jni
 OPENCV_INCLUDE_DIR = $(OPENCV_PATH)/include
 
 MINIGLOG_LIB_TYPE := STATIC
