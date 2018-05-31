@@ -6,4 +6,4 @@
 	url = https://github.com/davisking/dlib.git
 [submodule "androidstudio-examples/dlib-android-app"]
 	path = androidstudio-examples/dlib-android-app
-	url = https://github.com/tzutalin/dlib-android-app.git
+	url = git@github.com:SOLARleisu/dlib-android-app.git
